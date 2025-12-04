@@ -1,0 +1,341 @@
+//Q1
+// #include <iostream>
+// using namespace std;
+
+// #define SIZE 5
+
+// int q[SIZE];
+// int front = -1, rear = -1;
+
+// bool isEmpty() {
+//     return front == -1;
+// }
+
+// bool isFull() {
+//     return rear == SIZE - 1;
+// }
+
+// void enqueue(int x) {
+//     if (isFull())
+//         cout << "Queue Overflow\n";
+//     else {
+//         if (front == -1)
+//             front = 0;
+//         q[++rear] = x;
+//     }
+// }
+
+// void dequeue() {
+//     if (isEmpty())
+//         cout << "Queue Underflow\n";
+//     else {
+//         cout << "Deleted: " << q[front] << endl;
+//         front++;
+//         if (front > rear)
+//             front = rear = -1;
+//     }
+// }
+
+// void peek() {
+//     if (isEmpty())
+//         cout << "Queue Empty\n";
+//     else
+//         cout << "Front Element: " << q[front] << endl;
+// }
+
+// void display() {
+//     if (isEmpty())
+//         cout << "Queue Empty\n";
+//     else {
+//         for (int i = front; i <= rear; i++)
+//             cout << q[i] << " ";
+//         cout << endl;
+//     }
+// }
+
+// int main() {
+//     int ch, x;
+
+//     while (1) {
+//         cout << "\n1.Enqueue 2.Dequeue 3.Peek 4.Display 5.Exit\n";
+//         cin >> ch;
+
+//         if (ch == 5)
+//             break;
+
+//         switch (ch) {
+//             case 1:
+//                 cout << "Enter value: ";
+//                 cin >> x;
+//                 enqueue(x);
+//                 break;
+//             case 2:
+//                 dequeue();
+//                 break;
+//             case 3:
+//                 peek();
+//                 break;
+//             case 4:
+//                 display();
+//                 break;
+//         }
+//     }
+// }
+
+
+//Q2
+// #include <iostream>
+// using namespace std;
+
+// #define SIZE 5
+
+// int q[SIZE];
+// int front = -1, rear = -1;
+
+// bool isEmpty()
+// {
+//     return front == -1;
+// }
+
+// bool isFull()
+// {
+//     return (rear + 1) % SIZE == front;
+// }
+
+// void enqueue(int x)
+// {
+//     if (isFull())
+//     {
+//         cout << "Queue Overflow\n";
+//         return;
+//     }
+
+//     if (front == -1)
+//         front = rear = 0;
+//     else
+//         rear = (rear + 1) % SIZE;
+
+//     q[rear] = x;
+// }
+
+// void dequeue()
+// {
+//     if (isEmpty())
+//     {
+//         cout << "Queue Underflow\n";
+//         return;
+//     }
+
+//     cout << "Deleted: " << q[front] << endl;
+
+//     if (front == rear)
+//         front = rear = -1;
+//     else
+//         front = (front + 1) % SIZE;
+// }
+
+// void peek()
+// {
+//     if (isEmpty())
+//         cout << "Queue Empty\n";
+//     else
+//         cout << "Front Element: " << q[front] << endl;
+// }
+
+// void display()
+// {
+//     if (isEmpty())
+//     {
+//         cout << "Queue Empty\n";
+//         return;
+//     }
+
+//     int i = front;
+//     while (true)
+//     {
+//         cout << q[i] << " ";
+
+//         if (i == rear)
+//             break;
+
+//         i = (i + 1) % SIZE;
+//     }
+
+//     cout << endl;
+// }
+
+// int main()
+// {
+//     int ch, x;
+
+//     while (true)
+//     {
+//         cout << "\n1.Enqueue\n2.Dequeue\n3.Peek\n4.Display\n5.Exit\n";
+//         cin >> ch;
+
+//         switch (ch)
+//         {
+//             case 1:
+//                 cout << "Enter value: ";
+//                 cin >> x;
+//                 enqueue(x);
+//                 break;
+
+//             case 2:
+//                 dequeue();
+//                 break;
+
+//             case 3:
+//                 peek();
+//                 break;
+
+//             case 4:
+//                 display();
+//                 break;
+
+//             case 5:
+//                 return 0;
+
+//             default:
+//                 cout << "Invalid Choice\n";
+//         }
+//     }
+// }
+
+
+//Q3
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+//     int q[] = {4,7,11,20,5,9};
+//     int n = 6;
+
+//     int mid = n / 2;
+
+//     for (int i = 0; i < mid; i++)
+//         cout << q[i] << " " << q[i + mid] << " ";
+
+//     return 0;
+// }
+
+
+
+//Q4
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+//     string s = "aabc";
+//     int freq[256] = {0};
+
+//     for (int i = 0; i < s.length(); i++) {
+//         freq[s[i]]++;
+
+//         int found = 0;
+
+//         for (int j = 0; j <= i; j++) {
+//             if (freq[s[j]] == 1) {
+//                 cout << s[j] << " ";
+//                 found = 1;
+//                 break;
+//             }
+//         }
+
+//         if (!found)
+//             cout << "-1 ";
+//     }
+// }
+
+
+
+//Q5(a)
+// #include <iostream>
+// #include <queue>
+// using namespace std;
+
+// queue<int> q1, q2;
+
+// void push(int x) {
+//     q2.push(x);
+
+//     while (!q1.empty()) {
+//         q2.push(q1.front());
+//         q1.pop();
+//     }
+
+//     swap(q1, q2);
+// }
+
+// void pop() {
+//     if (q1.empty())
+//         cout << "Stack Empty\n";
+//     else {
+//         cout << "Popped: " << q1.front() << endl;
+//         q1.pop();
+//     }
+// }
+
+// void display() {
+//     queue<int> t = q1;
+//     while (!t.empty()) {
+//         cout << t.front() << " ";
+//         t.pop();
+//     }
+//     cout << endl;
+// }
+
+// int main() {
+//     push(10);
+//     push(20);
+//     push(30);
+//     display();
+//     pop();
+//     display();
+// }
+
+
+//Q5(b)
+// #include <iostream>
+// #include <queue>
+// using namespace std;
+
+// queue<int> q;
+
+// void push(int x) {
+//     int s = q.size();
+//     q.push(x);
+
+//     for (int i = 0; i < s; i++) {
+//         q.push(q.front());
+//         q.pop();
+//     }
+// }
+
+// void pop() {
+//     if (q.empty())
+//         cout << "Stack Empty\n";
+//     else {
+//         cout << "Popped: " << q.front() << endl;
+//         q.pop();
+//     }
+// }
+
+// void display() {
+//     queue<int> t = q;
+
+//     while (!t.empty()) {
+//         cout << t.front() << " ";
+//         t.pop();
+//     }
+//     cout << endl;
+// }
+
+// int main() {
+//     push(10);
+//     push(20);
+//     push(30);
+//     display();
+//     pop();
+//     display();
+// }
