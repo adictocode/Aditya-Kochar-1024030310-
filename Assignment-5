@@ -1,0 +1,377 @@
+//Q1
+// #include <iostream>
+// using namespace std;
+
+// struct Node {
+//     int data;
+//     Node* next;
+// };
+
+// Node* head = NULL;
+
+// void insertBeg(int x) {
+//     Node* n = new Node();
+//     n->data = x;
+//     n->next = head;
+//     head = n;
+// }
+
+// void insertEnd(int x) {
+//     Node* n = new Node();
+//     n->data = x;
+//     n->next = NULL;
+
+//     if (head == NULL) {
+//         head = n;
+//         return;
+//     }
+
+//     Node* t = head;
+//     while (t->next != NULL)
+//         t = t->next;
+
+//     t->next = n;
+// }
+
+// void insertAfter(int val, int x) {
+//     Node* t = head;
+
+//     while (t != NULL && t->data != val)
+//         t = t->next;
+
+//     if (t == NULL) {
+//         cout << "Value not found\n";
+//         return;
+//     }
+
+//     Node* n = new Node();
+//     n->data = x;
+//     n->next = t->next;
+//     t->next = n;
+// }
+
+// void insertBefore(int val, int x) {
+//     if (head == NULL)
+//         return;
+
+//     if (head->data == val) {
+//         insertBeg(x);
+//         return;
+//     }
+
+//     Node* t = head;
+
+//     while (t->next != NULL && t->next->data != val)
+//         t = t->next;
+
+//     if (t->next == NULL) {
+//         cout << "Value not found\n";
+//         return;
+//     }
+
+//     Node* n = new Node();
+//     n->data = x;
+//     n->next = t->next;
+//     t->next = n;
+// }
+
+// void deleteBeg() {
+//     if (head == NULL)
+//         return;
+
+//     Node* t = head;
+//     head = head->next;
+//     delete t;
+// }
+
+// void deleteEnd() {
+//     if (head == NULL)
+//         return;
+
+//     if (head->next == NULL) {
+//         delete head;
+//         head = NULL;
+//         return;
+//     }
+
+//     Node* t = head;
+
+//     while (t->next->next != NULL)
+//         t = t->next;
+
+//     delete t->next;
+//     t->next = NULL;
+// }
+
+// void deleteValue(int val) {
+//     if (head == NULL)
+//         return;
+
+//     if (head->data == val) {
+//         deleteBeg();
+//         return;
+//     }
+
+//     Node* t = head;
+
+//     while (t->next != NULL && t->next->data != val)
+//         t = t->next;
+
+//     if (t->next == NULL)
+//         return;
+
+//     Node* d = t->next;
+//     t->next = d->next;
+//     delete d;
+// }
+
+// void search(int val) {
+//     Node* t = head;
+//     int pos = 1;
+
+//     while (t != NULL) {
+//         if (t->data == val) {
+//             cout << "Position: " << pos << endl;
+//             return;
+//         }
+//         t = t->next;
+//         pos++;
+//     }
+
+//     cout << "Not Found\n";
+// }
+
+// void display() {
+//     Node* t = head;
+
+//     while (t != NULL) {
+//         cout << t->data << " ";
+//         t = t->next;
+//     }
+//     cout << endl;
+// }
+
+// int main() {
+//     int ch, x, v;
+
+//     while (1) {
+//         cout << "\n1.InsertBeg 2.InsertEnd 3.InsertAfter 4.InsertBefore";
+//         cout << "\n5.DeleteBeg 6.DeleteEnd 7.DeleteValue 8.Search 9.Display 10.Exit\n";
+
+//         cin >> ch;
+
+//         if (ch == 10)
+//             break;
+
+//         switch (ch) {
+
+//         case 1:
+//             cin >> x;
+//             insertBeg(x);
+//             break;
+
+//         case 2:
+//             cin >> x;
+//             insertEnd(x);
+//             break;
+
+//         case 3:
+//             cin >> v >> x;
+//             insertAfter(v, x);
+//             break;
+
+//         case 4:
+//             cin >> v >> x;
+//             insertBefore(v, x);
+//             break;
+
+//         case 5:
+//             deleteBeg();
+//             break;
+
+//         case 6:
+//             deleteEnd();
+//             break;
+
+//         case 7:
+//             cin >> v;
+//             deleteValue(v);
+//             break;
+
+//         case 8:
+//             cin >> v;
+//             search(v);
+//             break;
+
+//         case 9:
+//             display();
+//             break;
+//         }
+//     }
+
+
+//Q2
+// #include <iostream>
+// using namespace std;
+
+// struct Node {
+//     int data;
+//     Node* next;
+// };
+
+// Node* insert(Node* head, int x) {
+//     Node* n = new Node();
+//     n->data = x;
+//     n->next = NULL;
+
+//     if (head == NULL)
+//         return n;
+
+//     Node* t = head;
+
+//     while (t->next != NULL)
+//         t = t->next;
+
+//     t->next = n;
+//     return head;
+// }
+
+// void display(Node* head) {
+//     while (head != NULL) {
+//         cout << head->data << " ";
+//         head = head->next;
+//     }
+// }
+
+// int main() {
+//     int arr[] = {1,2,1,2,1,3,1};
+//     int n = 7;
+//     int key = 1;
+
+//     Node* head = NULL;
+
+//     for (int i = 0; i < n; i++)
+//         head = insert(head, arr[i]);
+
+//     int count = 0;
+
+//     while (head && head->data == key) {
+//         Node* d = head;
+//         head = head->next;
+//         delete d;
+//         count++;
+//     }
+
+//     Node* t = head;
+
+//     while (t && t->next) {
+//         if (t->next->data == key) {
+//             Node* d = t->next;
+//             t->next = d->next;
+//             delete d;
+//             count++;
+//         } else
+//             t = t->next;
+//     }
+
+//     cout << "Count: " << count << endl;
+//     cout << "Updated List: ";
+//     display(head);
+// }
+
+// }
+
+
+
+//Q3
+// #include <iostream>
+// using namespace std;
+
+// struct Node {
+//     int data;
+//     Node* next;
+// };
+
+// int main() {
+//     int arr[] = {1,2,3,4,5};
+//     int n = 5;
+
+//     Node* head = NULL;
+//     Node* tail = NULL;
+
+//     for (int i = 0; i < n; i++) {
+//         Node* nnode = new Node();
+//         nnode->data = arr[i];
+//         nnode->next = NULL;
+
+//         if (!head)
+//             head = tail = nnode;
+//         else {
+//             tail->next = nnode;
+//             tail = nnode;
+//         }
+//     }
+
+//     Node* slow = head;
+//     Node* fast = head;
+
+//     while (fast && fast->next) {
+//         slow = slow->next;
+//         fast = fast->next->next;
+//     }
+
+//     cout << slow->data;
+// }
+
+
+
+//Q4
+// #include <iostream>
+// using namespace std;
+
+// struct Node {
+//     int data;
+//     Node* next;
+// };
+
+// void display(Node* head) {
+//     while (head) {
+//         cout << head->data << " ";
+//         head = head->next;
+//     }
+// }
+
+// int main() {
+//     int arr[] = {1,2,3,4};
+
+//     Node* head = NULL;
+//     Node* tail = NULL;
+
+//     for (int i = 0; i < 4; i++) {
+//         Node* n = new Node();
+//         n->data = arr[i];
+//         n->next = NULL;
+
+//         if (!head)
+//             head = tail = n;
+//         else {
+//             tail->next = n;
+//             tail = n;
+//         }
+//     }
+
+//     Node* prev = NULL;
+//     Node* cur = head;
+//     Node* next = NULL;
+
+//     while (cur) {
+//         next = cur->next;
+//         cur->next = prev;
+//         prev = cur;
+//         cur = next;
+//     }
+
+//     head = prev;
+
+//     display(head);
+// }
